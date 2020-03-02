@@ -5,7 +5,9 @@ FROM node:10-alpine
 WORKDIR /app
 
 ADD package.json /app
-RUN npm install --production
+RUN npm config set registry https://registry.npm.taobao.org
+RUN npm config set disturl https://npm.taobao.org/dist
+RUN npm install
 
 # 将当前目录下的所有文件copy的工作目录下
 ADD . /app
