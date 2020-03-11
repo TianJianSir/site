@@ -4,33 +4,22 @@ import './style.css';
 
 const columns = [
   {
-    title: 'Name',
+    title: '项目名',
     dataIndex: 'name',
     key: 'name',
     render: text => <a>{text}</a>,
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
+    title: '版本',
+    dataIndex: 'version',
+    key: 'version',
   },
   {
     title: 'Action',
     key: 'action',
     render: (text, record) => (
       <span>
-        <a style={{ marginRight: 16 }}>Invite {record.name}</a>
-        <a>Delete</a>
+        <a>使用当前版本</a>
       </span>
     ),
   },
@@ -39,24 +28,18 @@ const columns = [
 const data = [
   {
     key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: 'ss',
+    name: 'site',
+    version: '1.2.0',
   },
   {
     key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: 'loser',
+    name: 'site',
+    version: '1.1.0',
   },
   {
     key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: 'loser',
+    name: '项目3',
+    version: '1.0.0',
   },
 ]; 
 

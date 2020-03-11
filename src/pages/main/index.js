@@ -1,5 +1,7 @@
 import React from 'react';
 import logo from '../../logo.svg';
+import { Link } from 'react-router-dom';
+
 import '../../App.css';
 
 function Main() {
@@ -8,7 +10,7 @@ function Main() {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            <Link to='/rule'>发布平台</Link>
           </p>
           <a
             className="App-link"
@@ -16,7 +18,7 @@ function Main() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React1
+            前端发布平台
           </a>
         </header>
       </div>
