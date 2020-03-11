@@ -1,48 +1,69 @@
 import React from 'react';
-import logo from '../../logo.svg';
-import {Button} from 'antd';
+import { Table } from 'antd';
+import './style.css';
 
-
-
-import Table from 'rc-table';
- 
 const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    width: 100,
+    render: text => <a>{text}</a>,
   },
   {
     title: 'Age',
     dataIndex: 'age',
     key: 'age',
-    width: 100,
   },
   {
     title: 'Address',
     dataIndex: 'address',
     key: 'address',
-    width: 200,
   },
   {
-    title: 'Operations',
-    dataIndex: '',
-    key: 'operations',
-    render: () => <a href="#">Delete</a>,
+    title: 'Tags',
+    key: 'tags',
+    dataIndex: 'tags',
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    render: (text, record) => (
+      <span>
+        <a style={{ marginRight: 16 }}>Invite {record.name}</a>
+        <a>Delete</a>
+      </span>
+    ),
   },
 ];
- 
+
 const data = [
-  { name: 'Jack', age: 28, address: 'some where', key: '1' },
-  { name: 'Rose', age: 36, address: 'some where', key: '2' },
-];
- 
+  {
+    key: '1',
+    name: 'John Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park',
+    tags: 'ss',
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    age: 42,
+    address: 'London No. 1 Lake Park',
+    tags: 'loser',
+  },
+  {
+    key: '3',
+    name: 'Joe Black',
+    age: 32,
+    address: 'Sidney No. 1 Lake Park',
+    tags: 'loser',
+  },
+]; 
 
 function Rule() {
     return (
-      <div className="App">
-        <Table columns={columns} data={data} />
+      <div className="rule_container">
+          <Table columns={columns} dataSource={data} />
       </div>
     );
   }
