@@ -1,55 +1,54 @@
 import React from 'react';
 import { Table } from 'antd';
+import axios from 'axios';
 import './style.css';
 
-const columns = [
-  {
-    title: '项目名',
-    dataIndex: 'name',
-    key: 'name',
-    render: text => <a>{text}</a>,
-  },
-  {
-    title: '版本',
-    dataIndex: 'version',
-    key: 'version',
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (text, record) => (
-      <span>
-        <a>使用当前版本</a>
-      </span>
-    ),
-  },
-];
+class Rule extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      data: []
+    }
 
-const data = [
-  {
-    key: '1',
-    name: 'site',
-    version: '1.2.0',
-  },
-  {
-    key: '2',
-    name: 'site',
-    version: '1.1.0',
-  },
-  {
-    key: '3',
-    name: '项目3',
-    version: '1.0.0',
-  },
-]; 
+    this.columns = [
+      {
+        title: '项目名',
+        dataIndex: 'name',
+        key: 'name',
+        render: text => <a>{text}</a>,
+      },
+      {
+        title: '版本',
+        dataIndex: 'child',
+        key: 'child',
+        render: (child,r,index) => child.map((item)=><span key={item} onClick={()=>{this.choose(index,item)}}>{item}</span>),
+      },
+    ];
+  }
 
-function Rule() {
+  choose(index,version){
+    const {data} = this.state
+    const params = {
+      name: data[index].name,
+      version
+    }
+  }
+
+  componentDidMount(){
+    axios.get('http://tianjian.work/api/list').then((res)=>{
+      this.setState({
+        data: res.data
+      })
+    })
+  }
+  
+  render(){
     return (
       <div className="rule_container">
-          <h3>发布平台</h3>
-          <Table columns={columns} dataSource={data} />
+          <Table columns={this.columns} dataSource={this.state.data} />
       </div>
     );
   }
+}
   
   export default Rule;
