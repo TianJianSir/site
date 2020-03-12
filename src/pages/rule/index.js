@@ -46,6 +46,7 @@ const data = [
 function Rule() {
     return (
       <div className="rule_container">
+          <h3>发布平台</h3>
           <Table columns={columns} dataSource={data} />
       </div>
     );
