@@ -11,8 +11,8 @@ const Routes = [
         exact: true,
     },
     {
-        id: 'rule',
-        path: '/rule',
+        id: 'site',
+        path: '/site',
         component: Rule,
         exact: true,
     },

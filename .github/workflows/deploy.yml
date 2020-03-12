@@ -27,4 +27,5 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           whoami
-          ls -al
+          cd /var/www/site
+          git pull
