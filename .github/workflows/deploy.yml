@@ -26,6 +26,6 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          whoami
-          cd /var/www/site
-          git pull
+          cd /var/www/
+          rm -rf site/
+          git clone -b gh-pages https://github.com/TianJianSir/site.git
