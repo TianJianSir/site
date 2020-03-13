@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, message, Progress } from 'antd';
 import axios from 'axios';
 import './style.css';
 
@@ -32,6 +32,14 @@ class Rule extends React.Component {
       name: data[index].name,
       version
     }
+
+    axios.post('http://tianjian.work/api/list/setVersion',params).then((res)=>{
+      if(res.data.code === '0'){
+        message.success('设置版本成功，请刷新界面')
+      }else{
+        message.error(res.data.message)
+      }
+    })
   }
 
   componentDidMount(){
@@ -45,10 +53,13 @@ class Rule extends React.Component {
   render(){
     return (
       <div className="rule_container">
+          <header>
+            <Progress type="circle" percent={10} />
+          </header>
           <Table columns={this.columns} dataSource={this.state.data} />
       </div>
     );
   }
 }
   
-  export default Rule;
+export default Rule;

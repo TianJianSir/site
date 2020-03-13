@@ -1,6 +1,11 @@
 .rule_container{
-    width: 80%;
+    width: 50%;
     margin: 100px auto;
+}
+
+.rule_container header{
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .rule_container table span{
