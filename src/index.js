@@ -4,9 +4,36 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+import Counter from './Counter'
+import reducer from './reducer'
+import rootSaga from './saga'
+console.log(createSagaMiddleware)
+console.dir(createSagaMiddleware)
+const SagaMiddleware = createSagaMiddleware()
+const store = createStore(
+    reducer,
+    applyMiddleware(SagaMiddleware)
+)
+
+const action = type => store.dispatch({type})
+
+SagaMiddleware.run(rootSaga)
+
+function render() {
+  ReactDOM.render(
+    <Counter
+    store={store}
+      value={store.getState()}
+      onIncrementAsync={() => {debugger;return action('INCREMENT_ASYNC')}}
+      onIncrement={() => action('INCREMENT')}
+      onDecrement={() => action('DECREMENT')} />,
+    document.getElementById('root')
+  )
+}
+
+render()
+store.subscribe(render)
